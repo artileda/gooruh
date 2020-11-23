@@ -1,6 +1,6 @@
 package data
 
-func SQLToStruct(st SQLTable) string {
+func SQLToStruct(st PSQLTable) string {
 	structString := "type " + st.Name + " struct {\n"
 	for _, element := range st.Columns {
 		var datatype = "*" + element.DataType

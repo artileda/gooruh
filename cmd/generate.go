@@ -35,7 +35,7 @@ var generateCmd = &cobra.Command{
 	Short: "generate [table name] [colname]:[type]:[length]",
 	Long:  `This function to generate Go Struct and PSQL querys to ease go-pg/pq package use`,
 	Run: func(cmd *cobra.Command, args []string) {
-		table := data.SQLTable{Name: args[0]}
+		table := data.PSQLTable{Name: args[0]}
 		arg := args[1:]
 
 		for _, element := range arg {

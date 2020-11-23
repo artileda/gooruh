@@ -1,16 +1,16 @@
 package data
 
-type SQLTable struct {
+type PSQLTable struct {
 	Name    string
 	Columns []SQLCol
 }
 
-func (st SQLTable) New(name string) {
+func (st PSQLTable) New(name string) {
 	st.Name = name
 }
 
-func (st SQLTable) GenerateQueries() string {
-	queries := "CREATE TABLE `" + st.Name + "` ( \n"
+func (st PSQLTable) GenerateQueries() string {
+	queries := "CREATE TABLE " + st.Name + " ( \n"
 	for _, column := range st.Columns {
 		queries += column.GenerateQueries() + "\n"
 	}
@@ -60,7 +60,7 @@ func GoToSQLTypes(types string) string {
 func (s SQLCol) GenerateQueries() string {
 	queries := "   "
 
-	queries += ("`" + s.Name + "` ")
+	queries += ("" + s.Name + " ")
 	queries += (GoToSQLTypes(s.DataType) + "(" + s.Length + ") ")
 
 	if s.NotNull {
