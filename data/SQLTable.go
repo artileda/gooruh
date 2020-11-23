@@ -10,7 +10,7 @@ func (st SQLTable) New(name string) {
 }
 
 func (st SQLTable) GenerateQueries() string {
-	queries := "CREATE TABLE " + st.Name + " ( \n"
+	queries := "CREATE TABLE `" + st.Name + "` ( \n"
 	for _, column := range st.Columns {
 		queries += column.GenerateQueries() + "\n"
 	}
@@ -60,7 +60,7 @@ func GoToSQLTypes(types string) string {
 func (s SQLCol) GenerateQueries() string {
 	queries := "   "
 
-	queries += (s.Name + " ")
+	queries += ("`" + s.Name + "` ")
 	queries += (GoToSQLTypes(s.DataType) + "(" + s.Length + ") ")
 
 	if s.NotNull {
